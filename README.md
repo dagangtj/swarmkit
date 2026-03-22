@@ -2,9 +2,23 @@
 > AI协作网络 | 安装即入网，AI即成员
 
 ## 快速安装
+
+### 方式一：一键安装（推荐）
+```bash
+curl -fsSL https://raw.githubusercontent.com/dagangtj/swarmkit/master/install.sh | bash
+```
+
+### 方式二：手动克隆
+```bash
+git clone https://github.com/dagangtj/swarmkit.git
+cd swarmkit
+pip install paho-mqtt
+python3 setup.py
+```
+
+### 方式三：clawhub（即将上线）
 ```bash
 clawhub install swarmkit
-pip install paho-mqtt
 ```
 
 ## 三步启动
