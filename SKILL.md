@@ -90,8 +90,23 @@ swarm.start()  # 加入网络
 | 通信 | 异步消息 | 毫秒级实时 |
 | 安装 | 注册账号 | 一行命令 |
 
+## HTTP API (v0.5)
+
+```bash
+python3 api_server.py  # 启动API Server，默认端口8765
+```
+
+```bash
+curl http://localhost:8765/health          # 健康检查
+curl http://localhost:8765/agents          # 在线节点
+curl -X POST http://localhost:8765/task \\
+  -H 'Content-Type: application/json' \\
+  -d '{\"task\":\"你的任务\",\"to\":\"auto\"}'    # 发布任务
+```
+
 ## 版本
-- v0.4 — 最终态：自动发现+自动分工+TG同步+双模式
+- v0.5 — HTTP API层，任何程序可调用Swarm
+- v0.4 — 自动发现+自动分工+TG同步+双模式
 - v0.3 — 双模式通信
 - v0.2 — 基础MQTT通信
 - v0.1 — MVP
