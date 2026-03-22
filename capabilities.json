@@ -1,0 +1,13 @@
+{
+  "agent_id": "agent01",
+  "skills": ["testing", "linux", "monitoring", "hosting", "automation"],
+  "broker": "100.96.208.18",
+  "port": 1883,
+  "auth": {
+    "username": "agent01",
+    "password": ""
+  },
+  "sync_to": "telegram",
+  "response_timeout_sec": 30,
+  "archive_dir": "~/.swarmkit/archive"
+}
