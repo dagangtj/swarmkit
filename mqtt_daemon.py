@@ -7,7 +7,7 @@ from datetime import datetime
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s [01] %(message)s',
-    handlers=[logging.FileHandler('/tmp/mqtt_daemon_01.log'), logging.StreamHandler()]
+    handlers=[logging.FileHandler('/tmp/mqtt_daemon_01.log')]
 )
 
 BROKER, PORT = '100.96.208.18', 1883
@@ -86,7 +86,8 @@ def on_message(c, u, msg):
 def on_disconnect(c, u, d, rc=None, p=None):
     logging.warning('断开，自动重连...')
 
-client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id='agent01-daemon')
+import uuid as _uuid
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id=f'agent01-daemon-{_uuid.uuid4().hex[:6]}', clean_session=True)
 client.username_pw_set(USER, PASS)
 client.on_connect = on_connect
 client.on_message = on_message
