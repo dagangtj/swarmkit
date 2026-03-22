@@ -101,3 +101,39 @@ python3 test_integration.py
 ## 版本历史
 - v0.1: 基础通信+归档
 - v0.2: A2A协议兼容+send_task/send_result
+
+## HTTP API (v0.5)
+
+启动API Server：
+```bash
+python3 api_server.py
+# 默认端口 8765
+```
+
+### 端点
+
+```bash
+# 健康检查
+curl http://localhost:8765/health
+
+# 查看在线节点
+curl http://localhost:8765/agents
+
+# 发布任务
+curl -X POST http://localhost:8765/task \
+  -H 'Content-Type: application/json' \
+  -d '{"task": "你的任务描述", "to": "auto"}'
+
+# 查询任务状态
+curl http://localhost:8765/task/{task_id}
+```
+
+### 测试结果（2026-03-22）
+```
+✅ T1 /health: ok
+✅ T2 /agents: 2个节点在线 ['agent01', 'agent00']
+✅ T3 /status: online mode=内网(MQTT)
+✅ T4 POST /task: task_id=7de2f6d8
+✅ T5 GET /task/{id}: status=pending
+5/5 ALL PASS
+```
